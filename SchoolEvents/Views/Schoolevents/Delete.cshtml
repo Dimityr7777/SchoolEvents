@@ -1,0 +1,70 @@
+﻿@model SchoolEvents.Models.Schoolevent
+
+@{
+    ViewData["Title"] = "Изтриване на събитие";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4 text-danger">Изтриване на събитие</h2>
+
+    <div class="alert alert-warning">
+        Сигурни ли сте, че искате да изтриете това събитие?
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <h4 class="card-title mb-3">@Model.Title</h4>
+
+            <dl class="row">
+
+                <dt class="col-sm-3">
+                    Описание
+                </dt>
+                <dd class="col-sm-9">
+                    @Model.Description
+                </dd>
+
+                @if (Model.StartAt.HasValue)
+                {
+                    <dt class="col-sm-3">
+                        Дата
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Model.StartAt.Value.ToString("dd.MM.yyyy")
+                    </dd>
+                }
+
+                <dt class="col-sm-3">
+                    Място
+                </dt>
+                <dd class="col-sm-9">
+                    @Model.Location
+                </dd>
+
+                <dt class="col-sm-3">
+                    Тип събитие
+                </dt>
+                <dd class="col-sm-9">
+                    @Model.Type
+                </dd>
+
+            </dl>
+
+            <form asp-action="Delete" method="post" class="mt-4">
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-danger">
+                    Изтрий събитието
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary ms-2">
+                    Отказ
+                </a>
+            </form>
+
+        </div>
+    </div>
+
+</div>

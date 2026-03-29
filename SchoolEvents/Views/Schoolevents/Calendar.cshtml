@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Календар";
+    var isAdmin = User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin");
+}
+
+<h2 class="mb-4">Календар на събитията</h2>
+
+<form id="antiForgeryForm" method="post">
+    @Html.AntiForgeryToken()
+</form>
+
+<div id="calendar"></div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var calendarEl = document.getElementById('calendar');
+            var isAdmin = @isAdmin.ToString().ToLower();
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'bg',
+                fixedWeekCount: false,
+                showNonCurrentDates: false,
+                events: '/Schoolevents/GetEvents',
+
+                displayEventTime: false,
+                dayMaxEvents: false,
+                eventDisplay: 'block',
+
+                dateClick: function (info) {
+                    if (isAdmin) {
+                        window.location.href = '/Schoolevents/Create?startAt=' + info.dateStr;
+                    }
+                },
+
+                eventDidMount: function (info) {
+                    var location = info.event.extendedProps.location ?? '';
+                    var type = info.event.extendedProps.type ?? '';
+                    var description = info.event.extendedProps.description ?? '';
+
+                    var tooltipText =
+                        info.event.title +
+                        (location ? '\nМясто: ' + location : '') +
+                        (type ? '\nТип: ' + type : '') +
+                        (description ? '\nОписание: ' + description : '');
+
+                    info.el.setAttribute('title', tooltipText);
+                },
+
+                eventClick: function (info) {
+                    info.jsEvent.preventDefault();
+
+                    if (!isAdmin) {
+                        if (info.event.url) {
+                            window.location.href = info.event.url;
+                        }
+                        return;
+                    }
+
+                    var choice = prompt('Напиши:\n1 - Детайли\n2 - Изтрий', '1');
+
+                    if (choice === '1') {
+                        if (info.event.url) {
+                            window.location.href = info.event.url;
+                        }
+                    }
+                    else if (choice === '2') {
+                        if (confirm('Сигурни ли сте, че искате да изтриете това събитие?')) {
+                            var token = document.querySelector('#antiForgeryForm input[name="__RequestVerificationToken"]').value;
+
+                            fetch('/Schoolevents/DeleteFromCalendar', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                                    'RequestVerificationToken': token
+                                },
+                                body: 'id=' + encodeURIComponent(info.event.id)
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    info.event.remove();
+                                } else {
+                                    alert('Грешка при изтриване.');
+                                }
+                            })
+                            .catch(() => {
+                                alert('Грешка със сървъра.');
+                            });
+                        }
+                    }
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+}

@@ -1,0 +1,135 @@
+﻿@model List<SchoolEvents.Models.NewsPost>
+
+@{
+    ViewData["Title"] = "Новини";
+    var q = ViewBag.Q as string ?? "";
+}
+
+<div class="container py-4 news-page">
+
+    <!-- HERO -->
+    <div class="hero p-4 p-md-5 mb-4">
+        <h1 class="mb-2">Новини</h1>
+        <p class="text-muted mb-0">Актуална информация от училището.</p>
+    </div>
+
+    @if (TempData["NewsSuccess"] != null)
+    {
+        <div class="alert alert-info">@TempData["NewsSuccess"]</div>
+    }
+
+    <!-- TOOLBAR -->
+    <form method="get" class="row g-2 mb-3 align-items-center" style="margin-top: -10px;">
+
+        <!-- ЛЯВО -->
+        <div class="col-md-8 d-flex gap-2 flex-wrap">
+
+            <input type="text"
+                   name="q"
+                   value="@q"
+                   class="form-control"
+                   style="max-width: 300px;"
+                   placeholder="Търсене по заглавие..." />
+
+            <button type="submit" class="btn btn-dark">
+                Търси
+            </button>
+
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                Изчисти
+            </a>
+
+        </div>
+
+        <!-- ДЯСНО -->
+        <div class="col-md-4 d-flex justify-content-md-end">
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <a asp-action="Create" class="btn btn-outline-primary">
+                    + Добави новина
+                </a>
+            }
+
+        </div>
+
+    </form>
+
+    <!-- СПИСЪК -->
+    <div class="row g-3">
+
+        @if (Model == null || Model.Count == 0)
+        {
+            <div class="text-muted">Няма новини.</div>
+        }
+        else
+        {
+            foreach (var n in Model)
+            {
+                var cover = !string.IsNullOrWhiteSpace(n.CoverImageUrl)
+                    ? n.CoverImageUrl
+                    : "/images/placeholder.jpg";
+
+                <div class="col-12 col-md-6 col-lg-4">
+
+                    <div class="card gallery-card event-card overflow-hidden h-100 border-0 shadow-sm">
+
+                        <!-- 🔥 ВАЖНО: d-block h-100 -->
+                        <a class="text-decoration-none d-block h-100"
+                               asp-action="Details"
+                               asp-route-id="@n.Id">
+
+                            <!-- IMAGE + OVERLAY -->
+                            <div class="gallery-frame event-image-wrapper">
+                                <img src="@cover" alt="@n.Title" />
+
+                                <div class="event-overlay">
+                                    <span>Виж повече</span>
+                                </div>
+                            </div>
+
+                            <!-- TEXT -->
+                            <div class="p-3">
+                                <div class="fw-bold">@n.Title</div>
+                            </div>
+
+                        </a>
+
+                        <!-- ADMIN -->
+                        @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <div class="px-3 pb-3 d-flex gap-2 flex-wrap">
+
+                                <a asp-action="Edit"
+                                       asp-route-id="@n.Id"
+                                       class="btn btn-sm btn-outline-primary">
+                                    Редакция
+                                </a>
+
+                                <form asp-action="Delete"
+                                      asp-route-id="@n.Id"
+                                      method="post"
+                                      class="m-0"
+                                      onsubmit="return confirm('Сигурен ли си?');">
+
+                                    @Html.AntiForgeryToken()
+
+                                    <button type="submit"
+                                            class="btn btn-sm btn-outline-danger">
+                                        Изтрий
+                                    </button>
+
+                                </form>
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            }
+        }
+
+    </div>
+
+</div>

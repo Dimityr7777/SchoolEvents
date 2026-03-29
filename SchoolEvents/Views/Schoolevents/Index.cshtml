@@ -1,0 +1,113 @@
+﻿@model IEnumerable<SchoolEvents.Models.Schoolevent>
+
+@{
+    ViewData["Title"] = "Събития";
+    var currentFilter = ViewBag.Filter as string ?? "upcoming";
+    var currentQ = ViewBag.Q as string ?? "";
+}
+
+<div class="container py-4 events-page">
+    <div class="hero p-4 p-md-5 mb-4">
+        <h1 class="mb-2">Събития</h1>
+        <p class="text-muted mb-0">Предстоящи, минали и всички училищни събития.</p>
+    </div>
+
+    <form asp-action="Index" method="get" class="events-toolbar mb-4">
+        <div class="row g-2 align-items-center">
+            <div class="col-md-5">
+                <input type="text"
+                       name="q"
+                       value="@currentQ"
+                       class="form-control toolbar-control"
+                       placeholder="Търсене по заглавие, описание, място..." />
+            </div>
+
+            <div class="col-md-3">
+                <select name="filter" class="form-select toolbar-control">
+                    <option value="upcoming" selected="@(currentFilter == "upcoming")">Предстоящи</option>
+                    <option value="past" selected="@(currentFilter == "past")">Минали</option>
+                    <option value="all" selected="@(currentFilter == "all")">Всички</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 d-flex gap-2 flex-wrap">
+                <button type="submit" class="btn btn-dark toolbar-btn">Търси</button>
+                <a asp-action="Index" class="btn btn-outline-secondary toolbar-btn">Изчисти</a>
+                <a asp-action="Calendar" class="btn btn-outline-primary toolbar-btn">Календар</a>
+            </div>
+        </div>
+    </form>
+
+    @if (!Model.Any())
+    {
+        <div class="text-muted">Няма намерени събития.</div>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var item in Model)
+            {
+                var cover = !string.IsNullOrWhiteSpace(item.ImagePath)
+                    ? item.ImagePath
+                    : "/images/placeholder.jpg";
+
+                var shortDescription = string.IsNullOrWhiteSpace(item.Description)
+                    ? null
+                    : (item.Description.Length > 100
+                        ? item.Description.Substring(0, 100) + "..."
+                        : item.Description);
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card gallery-card event-card overflow-hidden h-100 border-0 shadow-sm position-relative">
+                        <a class="text-decoration-none" asp-action="Details" asp-route-id="@item.Id">
+                            <div class="gallery-frame">
+                                <img src="@cover" alt="@item.Title" />
+                            </div>
+
+                            <div class="p-3">
+                                <div class="fw-bold">@item.Title</div>
+
+                                @if (item.StartAt.HasValue)
+                                {
+                                    <div class="text-muted small">@item.StartAt.Value.ToString("dd.MM.yyyy")</div>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(item.Location))
+                                {
+                                    <div class="text-muted small">@item.Location</div>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(item.Type))
+                                {
+                                    <div class="text-muted small">@item.Type</div>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(shortDescription))
+                                {
+                                    <div class="text-muted small mt-1">@shortDescription</div>
+                                }
+                            </div>
+                        </a>
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated &&
+                                                                             (User.IsInRole("Admin") || User.IsInRole("Teacher")))
+                        {
+                            <div class="px-3 pb-3 d-flex gap-2 flex-wrap">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                    Редактирай
+                                </a>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                        Изтрий
+                                    </a>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,175 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SchoolEvents</title>
+    <script type="importmap"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SchoolEvents.styles.css" asp-append-version="true" />
+
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow">
+            <div class="container">
+
+                <a class="navbar-brand brand d-flex align-items-center gap-2"
+                       asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.png" alt="Logo" class="brand-logo" />
+                    <span class="brand-text">SchoolEvents</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav"
+                        aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="topNav">
+
+                    <ul class="navbar-nav me-auto align-items-lg-center gap-lg-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Начало</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                Събития
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                           asp-controller="Schoolevents"
+                                           asp-action="Index"
+                                           asp-route-filter="upcoming">
+                                        Предстоящи събития
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                           asp-controller="Schoolevents"
+                                           asp-action="Index"
+                                           asp-route-filter="past">
+                                        Минали събития
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                           asp-controller="Schoolevents"
+                                           asp-action="Calendar">
+                                        Календар
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item"
+                                           asp-controller="Schoolevents"
+                                           asp-action="Index"
+                                           asp-route-filter="all">
+                                        Всички събития
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                                   asp-controller="Gallery"
+                                   asp-action="Index">
+                                Галерия
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                                   asp-controller="News"
+                                   asp-action="Index">
+                                Новини
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                                   asp-controller="Home"
+                                   asp-action="Contact">
+                                Контакти
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="ms-auto d-flex align-items-center gap-2 nav-actions">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                            {
+                                <a class="nav-action" asp-controller="Schoolevents" asp-action="Create">
+                                    Добави събитие
+                                </a>
+                            }
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="nav-action" asp-controller="Admin" asp-action="Index">
+                                    Admin панел
+                                </a>
+                            }
+
+                            <form asp-area="Identity"
+                                  asp-page="/Account/Logout"
+                                  asp-route-returnUrl="@Url.Action("Index", "Home")"
+                                  method="post"
+                                  class="m-0">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="nav-action nav-action-btn">
+                                    Logout
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="nav-action" asp-area="Identity" asp-page="/Account/Login">
+                                Login
+                            </a>
+
+                            <a class="nav-action" asp-area="Identity" asp-page="/Account/Register">
+                                Register
+                            </a>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="py-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container py-3">
+            &copy; 2026 - SchoolEvents
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

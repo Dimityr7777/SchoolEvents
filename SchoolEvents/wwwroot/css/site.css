@@ -1,0 +1,1413 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* =========================================================
+   SCHOOL PRO THEME (Bootstrap 5) — clean, official, modern
+   Paste at the bottom of site.css
+========================================================= */
+
+/* Brand tokens */
+:root {
+    --brand: #1d4ed8; /* school blue */
+    --brand-2: #2563eb;
+    --accent: #0ea5e9; /* light accent */
+    --bg: #0b1220; /* deep navy background */
+    --surface: #0f172a; /* main surface */
+    --surface-2: #111c33; /* secondary */
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: rgba(255,255,255,.10);
+    --r-xl: 20px;
+    --r-lg: 16px;
+    --r-md: 12px;
+    --shadow-1: 0 10px 26px rgba(0,0,0,.32);
+    --shadow-2: 0 18px 48px rgba(0,0,0,.42);
+    --ring: 0 0 0 .22rem rgba(37,99,235,.22);
+}
+
+/* Base */
+body {
+    background: radial-gradient(1100px 520px at 15% 0%, rgba(29,78,216,.18), transparent 58%), radial-gradient(900px 420px at 90% 8%, rgba(14,165,233,.12), transparent 60%), linear-gradient(180deg, #0b1220 0%, #070b14 100%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #f1f5f9;
+    letter-spacing: -.2px;
+}
+
+.text-muted {
+    color: var(--muted) !important;
+}
+
+.text-dark {
+    color: var(--text) !important;
+}
+
+/* important in navbar scaffold */
+hr {
+    border-color: rgba(255,255,255,.08);
+    opacity: 1;
+}
+
+/* Links */
+a {
+    color: #93c5fd;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #bfdbfe;
+        text-decoration: underline;
+    }
+
+/* NAVBAR — official “school portal” look */
+.navbar {
+    background: rgba(15,23,42,.78) !important;
+    border-bottom: 1px solid var(--border) !important;
+    box-shadow: var(--shadow-1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1200; /* Bootstrap navbar default */
+}
+
+    .navbar .navbar-brand {
+        color: #eaf2ff !important;
+        font-weight: 800;
+        letter-spacing: .2px;
+    }
+
+    .navbar .nav-link {
+        color: #eaf2ff !important;
+        opacity: .92;
+        font-weight: 600;
+    }
+
+        .navbar .nav-link:hover {
+            opacity: 1;
+        }
+
+    .navbar .navbar-toggler {
+        border: 1px solid rgba(255,255,255,.16);
+    }
+
+    .navbar .navbar-toggler-icon {
+        filter: invert(1) brightness(1.15);
+    }
+
+/* Brand dot (optional in layout) */
+.brand-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    margin-right: 10px;
+    background: linear-gradient(135deg,var(--brand),var(--accent));
+}
+
+/* Buttons */
+.btn {
+    border-radius: var(--r-md);
+    transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+}
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(0,0,0,.40);
+    }
+
+    .btn:focus, .btn:active:focus,
+    .form-control:focus, .form-select:focus {
+        box-shadow: var(--ring) !important;
+    }
+
+.btn-primary {
+    background: linear-gradient(135deg,var(--brand),var(--brand-2));
+    border: none;
+}
+
+    .btn-primary:hover {
+        filter: brightness(1.06);
+    }
+
+.btn-outline-primary {
+    color: #dbeafe;
+    border-color: rgba(147,197,253,.55);
+}
+
+    .btn-outline-primary:hover {
+        background: rgba(147,197,253,.10);
+        border-color: rgba(191,219,254,.80);
+        color: #fff;
+    }
+
+/* Hero — looks like an official portal header */
+.hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-xl);
+    background: radial-gradient(900px 280px at 14% 0%, rgba(29,78,216,.25), transparent 62%), radial-gradient(700px 260px at 92% 12%, rgba(14,165,233,.18), transparent 62%), rgba(15,23,42,.80);
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: var(--shadow-2);
+    z-index: 1;
+}
+
+    .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(255,255,255,.06), transparent 35%, rgba(255,255,255,.03));
+        pointer-events: none;
+    }
+
+    .hero > * {
+        position: relative;
+        z-index: 1;
+    }
+
+/* Quick access box */
+.stats-card {
+    background: rgba(17,28,51,.72);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Cards — clean & readable */
+.card {
+    background: linear-gradient(180deg, rgba(17,28,51,.92), rgba(15,23,42,.92));
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-1);
+    color: var(--text);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    z-index: 1;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-2);
+        border-color: rgba(147,197,253,.22);
+    }
+
+/* Badge */
+.badge {
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.10);
+}
+
+    .badge.bg-secondary {
+        background: rgba(148,163,184,.16) !important;
+        color: #eef2ff;
+    }
+
+/* Alerts */
+.alert {
+    background: rgba(17,28,51,.78);
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: var(--r-lg);
+    color: var(--text);
+}
+
+.alert-info {
+    background: rgba(29,78,216,.12);
+    border-color: rgba(29,78,216,.22);
+}
+
+/* Forms — professional */
+.form-control, .form-select, textarea {
+    background: rgba(11,18,32,.62) !important;
+    color: var(--text) !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: var(--r-md) !important;
+}
+
+    .form-control::placeholder {
+        color: rgba(156,163,175,.78) !important;
+    }
+
+.text-danger {
+    color: #fb7185 !important;
+}
+
+/* Tables — readable */
+.table {
+    background: rgba(17,28,51,.78);
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+}
+
+    .table > :not(caption) > * > * {
+        background: transparent;
+        border-bottom-color: rgba(255,255,255,.08);
+    }
+
+    .table thead th {
+        color: rgba(241,245,249,.92);
+        border-bottom-color: rgba(255,255,255,.12);
+    }
+
+
+#homeCarousel {
+    width: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+#homeCarousel .carousel-inner,
+#homeCarousel .carousel-item {
+    height: 360px;
+    background: #000;
+}
+
+.carousel-media {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    background: #000;
+}
+  /* ✅ BANNER / CAROUSEL */
+
+
+/* Снимки */
+.carousel-img,
+.carousel-media {
+    width: 100%;
+    height: 40px;
+    object-fit: contain; /* показва цялото */
+    display: block;
+    background: #000;
+}
+
+@media (max-width:768px) {
+    .carousel-img,
+    .carousel-media {
+        height: 240px;
+    }
+
+    #homeCarousel {
+        border-radius: 18px !important;
+        outline-offset: 6px !important;
+    }
+
+        #homeCarousel .carousel-inner {
+            border-radius: 18px !important;
+        }
+}
+
+/* Контейнер */
+#homeCarousel {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+    #homeCarousel .carousel-inner {
+        width: 100%;
+        height: 360px;
+        background: #000;
+        overflow: hidden;
+    }
+
+    #homeCarousel .carousel-item {
+        height: 360px;
+        background: #000;
+    }
+
+/* Overlay */
+.carousel-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,.08) 45%, rgba(0,0,0,.32));
+    pointer-events: none !important;
+}
+
+/* Контроли */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,.70));
+}
+/* Footer */
+footer {
+    background: rgba(15,23,42,.65);
+    border-top: 1px solid rgba(255,255,255,.08);
+    color: rgba(229,231,235,.75) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Ensure content clickable */
+.hero::after,
+.carousel-item::after {
+    pointer-events: none !important;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    z-index: 2000;
+}
+
+/* Main spacing */
+main {
+    padding-top: 0.5rem;
+}
+
+/* Anchors */
+#upcoming, #categories {
+    scroll-margin-top: 90px;
+}
+
+/* Layer fixes */
+.hero, .card, .carousel, .carousel-inner, #homeCarousel {
+    position: relative;
+    z-index: 1;
+}
+
+/* Controls clickable */
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 2;
+}
+
+/* Containers fix */
+.container, .container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
+/* ✅ School brand (logo + text) */
+.brand-logo {
+    height: 40px; /* по-голямо */
+    width: auto;
+    display: block;
+    border-radius: 10px; /* леко “меко” */
+    transition: transform .18s ease, filter .18s ease, opacity .18s ease;
+    opacity: .95;
+}
+
+.brand-text {
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: .3px;
+}
+
+/* Hover ефект */
+.brand:hover .brand-logo {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* =========================
+   ACHIEVEMENTS - FINAL (WORKING)
+========================= */
+
+/* По-широк container (по-близо до ръба) */
+.container {
+    max-width: 1400px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* Разстояние след банера */
+.achievements-wrap {
+    margin-top: 24px;
+}
+
+    /* Еднакво разстояние между 1-2-3 карти */
+    .achievements-wrap .row {
+        --bs-gutter-y: 1.5rem;
+        --bs-gutter-x: 1.5rem;
+    }
+
+    /* ✅ ЕДНАКВИ СНИМКИ - 100% */
+    .achievements-wrap .media-cover {
+        width: 100%;
+        height: 360px; /* всички снимки еднаква височина */
+        overflow: hidden;
+    }
+
+    .achievements-wrap .media-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* реже и прави еднакво */
+        display: block;
+    }
+
+/* Мобилно */
+@media (max-width: 768px) {
+    .achievements-wrap .media-cover {
+        height: 210px;
+    }
+}
+
+/* =========================
+   NAV ACTIONS (right side) — premium chips
+========================= */
+.nav-actions {
+    gap: .5rem;
+}
+
+.nav-action {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .45rem .75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    color: rgba(241,245,249,.95);
+    box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+    .nav-action:hover {
+        transform: translateY(-1px);
+        background: rgba(255,255,255,.09);
+        border-color: rgba(147,197,253,.25);
+        box-shadow: 0 16px 32px rgba(0,0,0,.35), 0 0 0 .20rem rgba(37,99,235,.18);
+        text-decoration: none;
+        color: #fff;
+    }
+
+.nav-action-btn {
+    border: 0;
+    cursor: pointer;
+}
+
+    .nav-action-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 .20rem rgba(37,99,235,.22);
+    }
+
+/* Mobile: actions wrap nicely */
+@media (max-width: 991px) {
+    .nav-actions {
+        margin-top: .5rem;
+        flex-wrap: wrap;
+    }
+}
+
+/* =========================
+   FIX: Table text visibility (dark theme)
+========================= */
+.table {
+    color: #e5e7eb !important;
+}
+
+    .table thead th {
+        color: #f1f5f9 !important;
+    }
+
+    .table tbody td,
+    .table tbody th {
+        color: #e5e7eb !important;
+    }
+
+    .table > :not(caption) > * > * {
+        color: #e5e7eb !important;
+        background-color: transparent !important;
+    }
+
+    .table a {
+        color: #93c5fd !important;
+    }
+
+        .table a:hover {
+            color: #bfdbfe !important;
+        }
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(255,255,255,.03) !important;
+}
+
+.table-hover > tbody > tr:hover > * {
+    background-color: rgba(147,197,253,.08) !important;
+}
+/* =========================================================
+   ✅ GALLERY + MODAL (CLEAN, SINGLE SOURCE OF TRUTH)
+   Paste at VERY END of site.css
+========================================================= */
+
+/* thumbnails */
+.gallery-frame {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f5f6f8;
+    border-radius: var(--r-lg);
+}
+
+    .gallery-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+/* fix blur: no hover transform ONLY for gallery cards */
+.gallery-card,
+.gallery-card:hover,
+.gallery-card:focus,
+.gallery-card:active {
+    transform: none !important;
+}
+
+/* modal z-index above everything */
+.modal {
+    z-index: 20050 !important;
+}
+
+.modal-backdrop {
+    z-index: 20040 !important;
+}
+
+    /* backdrop (visual only) */
+    .modal-backdrop.show {
+        opacity: 0.25 !important;
+    }
+
+/* modal content must be clean white (no glass, no filters) */
+#photoModal .modal-content,
+#photoModal .modal-body {
+    background: #ffffff !important;
+    opacity: 1 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* make sure nothing inside modal blocks clicks */
+#photoModal,
+#photoModal * {
+    pointer-events: auto !important;
+    filter: none !important;
+    opacity: 1 !important;
+    mix-blend-mode: normal !important;
+}
+
+    /* modal image: NOT huge, NOT dark */
+    #photoModal .gallery-modal-img,
+    #photoModal #modalImg {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        object-fit: contain;
+        background: #fff;
+        filter: none !important; /* махаме всички потъмнявания */
+    }
+
+    /* modal caption text visible */
+    #photoModal #modalTitle {
+        color: #111 !important;
+    }
+
+    #photoModal #modalDesc {
+        color: #444 !important;
+    }
+
+    /* delete button (black) - always clickable on top */
+    #photoModal .delete-black-btn,
+    #photoModal .delete-btn,
+    #photoModal .delete-photo-btn {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 6px 14px;
+        font-size: 13px;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 999999 !important;
+        position: relative;
+    }
+
+        #photoModal .delete-black-btn:hover,
+        #photoModal .delete-btn:hover,
+        #photoModal .delete-photo-btn:hover {
+            opacity: .85;
+        }
+
+/* prevent overlays in theme from blocking clicks */
+.hero::after,
+.carousel-item::after {
+    pointer-events: none !important;
+}
+
+.modal {
+    z-index: 20050 !important;
+}
+
+.modal-backdrop {
+    z-index: 20040 !important;
+}
+
+#photoModal .gallery-delete-btn {
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+}
+
+/* ================================
+   CALENDAR STYLE
+================================ */
+
+#calendar {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.fc .fc-daygrid-event {
+    border: none;
+    padding: 3px 6px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+
+    .fc .fc-daygrid-event:hover {
+        opacity: 0.9;
+    }
+
+.fc .fc-daygrid-day-frame {
+    min-height: 95px;
+}
+
+/* текст на датите */
+.fc .fc-col-header-cell-cushion,
+.fc .fc-daygrid-day-number {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* всички дни да са със същия фон като сайта */
+.fc .fc-daygrid-day {
+    background-color: inherit !important;
+}
+
+/* маха специалния цвят за днешния ден */
+.fc .fc-day-today {
+    background-color: inherit !important;
+}
+/* ================================
+   CALENDAR SIZE FIX
+================================ */
+
+#calendar {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 20px; /* разстояние от футъра */
+}
+
+.fc .fc-daygrid-day-frame {
+    min-height: 90px; /* по-малки квадратчета */
+}
+/* ================================
+   CALENDAR STYLE IMPROVEMENTS
+================================ */
+
+
+/* КВАДРАТИТЕ ДА СЕ РАЗТЯГАТ */
+#calendar .fc-daygrid-day-frame {
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* КОНТЕЙНЕР ЗА СЪБИТИЯТА */
+#calendar .fc-daygrid-day-events {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* центрира вертикално */
+}
+
+/* САМОТО СЪБИТИЕ */
+#calendar .fc-daygrid-event {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* център хоризонтално */
+    text-align: center;
+    white-space: normal; /* позволява много редове */
+    word-break: break-word;
+    padding: 4px;
+    margin: 2px 4px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+/* ТЕКСТЪТ */
+#calendar .fc-event-title {
+    white-space: normal;
+    word-break: break-word;
+}
+/* ========================================
+   ADMIN DASHBOARD - DARK THEME / SITE STYLE
+======================================== */
+
+.admin-dashboard-page {
+    color: #e5e7eb;
+}
+
+.admin-dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f9fafb;
+}
+
+.admin-dashboard-subtitle {
+    margin-top: 6px;
+    color: #9ca3af;
+    font-size: 0.95rem;
+}
+
+.admin-alert-success {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #d1fae5;
+    padding: 14px 16px;
+    border-radius: 14px;
+}
+
+.admin-dashboard-card {
+    background: linear-gradient(180deg, rgba(31,41,55,0.95) 0%, rgba(17,24,39,0.98) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    height: 100%;
+}
+
+    .admin-dashboard-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+        border-color: rgba(59,130,246,0.25);
+    }
+
+.admin-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    background: rgba(59,130,246,0.14);
+    border: 1px solid rgba(59,130,246,0.18);
+    margin-bottom: 16px;
+}
+
+.admin-card-title {
+    color: #f9fafb;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.admin-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: #d1d5db;
+}
+
+    .admin-stat-row:last-of-type {
+        border-bottom: none;
+    }
+
+    .admin-stat-row strong {
+        color: #ffffff;
+        font-weight: 700;
+    }
+
+.admin-big-number {
+    font-size: 1.3rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.admin-muted-text {
+    color: #9ca3af;
+    font-size: 0.94rem;
+}
+
+.admin-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+    .admin-btn:hover {
+        transform: translateY(-1px);
+    }
+
+.admin-btn-primary {
+    background: #2563eb;
+    color: #ffffff;
+    border: 1px solid #2563eb;
+}
+
+    .admin-btn-primary:hover {
+        background: #1d4ed8;
+        color: #ffffff;
+    }
+
+.admin-btn-dark {
+    background: #111827;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+    .admin-btn-dark:hover {
+        background: #0b1220;
+        color: #ffffff;
+    }
+
+.admin-btn-outline {
+    background: transparent;
+    color: #e5e7eb;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+    .admin-btn-outline:hover {
+        background: rgba(255,255,255,0.06);
+        color: #ffffff;
+    }
+
+@media (max-width: 768px) {
+    .admin-dashboard-title {
+        font-size: 1.6rem;
+    }
+
+    .admin-dashboard-card {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .admin-card-actions {
+        gap: 8px;
+    }
+
+    .admin-btn {
+        width: 100%;
+    }
+}
+/* =========================================
+   EVENTS FULL STYLE (CARDS + HOVER + OVERLAY)
+========================================= */
+
+/* CARD */
+.events-page .card.gallery-card {
+    background: linear-gradient(180deg, rgba(31,41,55,0.95), rgba(17,24,39,0.98)) !important;
+    color: #e5e7eb !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    border-radius: 20px;
+}
+
+/* =========================
+   CARD HOVER
+========================= */
+
+.events-page .event-card {
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .events-page .event-card:hover {
+        transform: translateY(-8px) scale(1.01) !important;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.45) !important;
+    }
+
+/* =========================
+   IMAGE (INDEX)
+========================= */
+
+.events-page .gallery-frame {
+    overflow: hidden;
+}
+
+    .events-page .gallery-frame img {
+        width: 100%;
+        height: 325px;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+/* IMAGE HOVER */
+.events-page .event-card:hover .gallery-frame img {
+    transform: scale(1.08);
+}
+
+/* =========================
+   CARD OVERLAY
+========================= */
+
+.event-image-wrapper {
+    position: relative;
+}
+
+.event-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 20%, rgba(0,0,0,0.65) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+    .event-overlay span {
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+.events-page .event-card:hover .event-overlay {
+    opacity: 1;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.event-card a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.events-page .btn {
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+/* =========================
+   DETAILS PAGE
+========================= */
+
+.event-details-card {
+    background: linear-gradient(180deg, rgba(31,41,55,0.95), rgba(17,24,39,0.98));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    color: #e5e7eb;
+}
+
+/* DETAILS IMAGE */
+.event-details-image {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* =========================
+   DETAILS OVERLAY
+========================= */
+
+.event-details-image-wrapper {
+    position: relative;
+}
+
+.event-details-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+    .event-details-overlay h3 {
+        color: #fff;
+        font-weight: 700;
+        margin: 0;
+    }
+
+/* =========================
+   TEXT
+========================= */
+
+.event-info {
+    color: #9ca3af;
+    font-size: 0.95rem;
+}
+
+    .event-info strong {
+        color: #ffffff;
+    }
+
+.event-description {
+    color: #d1d5db;
+    line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .event-details-image {
+        max-height: 250px;
+    }
+
+    .events-page .gallery-frame img {
+        height: 200px;
+    }
+}
+
+/* =========================================
+   DROPDOWN
+========================================= */
+
+.dropdown-menu {
+    background-color: #0d1b2a !important;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-item {
+    color: #ffffff !important;
+    padding: 10px 18px;
+    transition: all 0.2s ease;
+}
+
+    .dropdown-item:hover {
+        background-color: #1f1f1f !important;
+        color: #ffffff !important;
+    }
+
+    .dropdown-item:active {
+        background-color: #2a2a2a !important;
+    }
+
+.dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+/* HOVER FIX */
+.news-page .event-card {
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .news-page .event-card:hover {
+        transform: translateY(-8px) scale(1.01) !important;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.45) !important;
+    }
+
+.news-page .gallery-frame {
+    overflow: hidden;
+}
+
+    .news-page .gallery-frame img {
+        transition: transform 0.4s ease;
+    }
+
+.news-page .event-card:hover .gallery-frame img {
+    transform: scale(1.08);
+}
+
+/* OVERLAY */
+.event-image-wrapper {
+    position: relative;
+}
+
+.event-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 20%, rgba(0,0,0,0.65) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+    .event-overlay span {
+        color: #fff;
+        font-weight: 600;
+    }
+
+.event-card:hover .event-overlay {
+    opacity: 1;
+}
+.carousel-img {
+    height: 360px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+.achievements-wrap {
+    margin-top: 12px !important;
+    margin-bottom: 10px !important;
+}
+
+    .achievements-wrap h2 {
+        text-align: center !important;
+        font-size: 1.6rem !important;
+        margin: 0 !important;
+    }
+
+.pride-section {
+    width: 100% !important;
+    overflow: hidden !important;
+    padding: 0 0 24px !important;
+}
+
+.pride-slider {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 1140px !important;
+    height: 320px !important;
+    margin: 0 auto 22px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.pride-track {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    height: 320px !important;
+    margin: 0 auto !important;
+}
+
+.pride-item {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 118px !important;
+    height: 118px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    border: 3px solid rgba(255,255,255,.16) !important;
+    background: #111827 !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,.35) !important;
+    transition: transform .15s linear, opacity .15s linear, box-shadow .15s linear, border-color .15s linear !important;
+}
+
+    .pride-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    .pride-item.active {
+        border-color: #1d4ed8 !important;
+        box-shadow: 0 20px 40px rgba(0,0,0,.45) !important;
+    }
+
+.pride-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 30 !important;
+    width: 42px !important;
+    height: 42px !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.08) !important;
+    color: #e5e7eb !important;
+    font-size: 22px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(6px) !important;
+}
+
+/* стрелките стоят където са */
+.pride-arrow-left {
+    left: calc(50% - 150px) !important;
+}
+
+.pride-arrow-right {
+    right: calc(50% - 150px) !important;
+}
+
+.pride-text-box {
+    max-width: 920px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    padding: 0 12px !important;
+}
+
+.pride-main-text {
+    color: #d1d5db !important;
+    font-size: 1.08rem !important;
+    line-height: 1.7 !important;
+    font-style: italic !important;
+    margin: 0 0 12px !important;
+    text-align: center !important;
+}
+
+.pride-caption {
+    color: #9ca3af !important;
+    font-size: .98rem !important;
+    text-align: center !important;
+}
+
+
+/* ✅ TABLET */
+@media (max-width: 991.98px) {
+
+    .carousel-img {
+        height: 300px !important;
+    }
+
+    .pride-slider,
+    .pride-track {
+        height: 280px !important;
+    }
+
+    .pride-item {
+        width: 90px !important;
+        height:90px !important;
+    }
+
+    .pride-arrow-left {
+        left: calc(50% - 150px) !important;
+    }
+
+    .pride-arrow-right {
+        right: calc(50% - 150px) !important;
+    }
+}
+
+
+/* ✅ MOBILE */
+@media (max-width: 767.98px) {
+
+    .carousel-img {
+        height: 230px !important;
+    }
+
+    .pride-slider,
+    .pride-track {
+        height: 210px !important;
+    }
+
+    .pride-item {
+        width: 72px !important;
+        height: 72px !important;
+        border-width: 2px !important;
+    }
+
+    .pride-arrow {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 18px !important;
+    }
+
+    .pride-arrow-left {
+        left: calc(50% - 95px) !important;
+    }
+
+    .pride-arrow-right {
+        right: calc(50% - 95px) !important;
+    }
+
+    .pride-main-text {
+        font-size: .96rem !important;
+        line-height: 1.58 !important;
+    }
+
+    .pride-caption {
+        font-size: .9rem !important;
+    }
+}
+.pride-track {
+    transform: translateY(-25px);
+}
+
+.pride-arrow {
+    top: calc(50% - 25px) !important;
+}
+
+.pride-text-box {
+    margin-top: -20px !important;
+}

@@ -1,0 +1,100 @@
+﻿@model SchoolEvents.Models.GalleryAlbum
+@{
+    ViewData["Title"] = Model?.Title ?? "Албум";
+    var sort = (string)(ViewBag.Sort ?? "new");
+    var photos = Model?.Photos ?? new List<SchoolEvents.Models.GalleryPhoto>();
+}
+
+<div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="m-0">@ViewData["Title"]</h2>
+
+        <div class="d-flex gap-2">
+            <a class="btn btn-sm @(sort == "new" ? "btn-primary" : "btn-outline-primary")"
+               asp-action="Album" asp-route-id="@Model.Id" asp-route-sort="new">Най-нови</a>
+
+            <a class="btn btn-sm @(sort == "old" ? "btn-primary" : "btn-outline-primary")"
+               asp-action="Album" asp-route-id="@Model.Id" asp-route-sort="old">Най-стари</a>
+
+            <a class="btn btn-sm @(sort == "name" ? "btn-primary" : "btn-outline-primary")"
+               asp-action="Album" asp-route-id="@Model.Id" asp-route-sort="name">По име</a>
+
+            <a class="btn btn-sm btn-outline-secondary" asp-action="Index">Назад</a>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        @foreach (var p in photos)
+        {
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card p-2 h-100">
+
+                    @* 🔥 Ако НЕ си Admin → снимката се отваря на голямо *@
+                    @if (!User.IsInRole("Admin"))
+                    {
+                        <a href="@p.FilePath" target="_blank">
+                            <img src="@p.FilePath"
+                                 class="img-fluid rounded"
+                                 alt="@p.Title" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="@p.FilePath"
+                             class="img-fluid rounded"
+                             alt="@p.Title" />
+                    }
+
+                    <div class="mt-2">
+                        <div class="fw-bold">@p.Title</div>
+                        @if (!string.IsNullOrWhiteSpace(p.Description))
+                        {
+                            <div class="small text-muted">@p.Description</div>
+                        }
+                    </div>
+
+                    @* 🔥 Черен бутон само за Admin *@
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <form asp-controller="Gallery"
+                              asp-action="DeletePhoto"
+                              method="post"
+                              class="mt-2">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@p.Id" />
+
+                            <button type="submit"
+                                    class="black-delete-btn w-100"
+                                    onclick="return confirm('Сигурен ли си?');">
+                                Изтрий
+                            </button>
+                        </form>
+                    }
+
+                </div>
+            </div>
+        }
+
+        @if (photos.Count == 0)
+        {
+            <div class="text-muted">Няма снимки в този албум.</div>
+        }
+    </div>
+</div>
+
+<style>
+    .black-delete-btn {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: opacity .2s ease;
+    }
+
+        .black-delete-btn:hover {
+            opacity: .85;
+        }
+</style>

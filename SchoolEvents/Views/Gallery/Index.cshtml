@@ -1,0 +1,53 @@
+﻿@model List<SchoolEvents.Models.GalleryAlbum>
+@{
+    ViewData["Title"] = "Галерия";
+}
+
+<div class="container py-4">
+    <div class="hero p-4 p-md-5 mb-4">
+        <h1 class="mb-2">Галерия</h1>
+        <p class="text-muted mb-0">Снимки от училищни събития, подредени по албуми.</p>
+    </div>
+
+    @if (TempData["GallerySuccess"] != null)
+    {
+        <div class="alert alert-info">@TempData["GallerySuccess"]</div>
+    }
+
+
+    <div class="row g-3">
+        @foreach (var a in Model)
+        {
+            // ✅ cover: първо CoverPath, ако няма -> първата снимка от албума, ако няма -> placeholder
+            var cover = a.CoverPath
+                ?? a.Photos.Select(x => x.FilePath).FirstOrDefault()
+                ?? "/images/placeholder.jpg";
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="text-decoration-none" asp-action="Album" asp-route-id="@a.Id">
+                    <div class="card overflow-hidden h-100">
+                        <div class="gallery-frame">
+                            <img src="@cover" alt="@a.Title" />
+                        </div>
+
+                        <div class="p-3">
+                            <div class="fw-bold">@a.Title</div>
+                            <div class="text-muted small">@a.Photos.Count снимки</div>
+
+                            @if (!string.IsNullOrWhiteSpace(a.Description))
+                            {
+                                <div class="text-muted small">@a.Description</div>
+                            }
+                        </div>
+                    </div>
+                </a>
+            </div>
+           
+        }
+
+        @if (Model.Count == 0)
+        {
+            <div class="text-muted">Няма създадени албуми.</div>
+        }
+    </div>
+</div>

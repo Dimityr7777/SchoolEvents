@@ -1,0 +1,145 @@
+﻿@model SchoolEvents.Models.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin панел";
+}
+
+<div class="admin-dashboard-page py-4">
+    <div class="admin-dashboard-header mb-4">
+        <div>
+            <h2 class="admin-dashboard-title m-0">Admin панел</h2>
+            <p class="admin-dashboard-subtitle m-0">
+                Управление на съдържанието в системата
+            </p>
+        </div>
+    </div>
+
+    @if (TempData["AdminSuccess"] != null)
+    {
+        <div class="admin-alert-success mb-4">
+            @TempData["AdminSuccess"]
+        </div>
+    }
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="admin-dashboard-card h-100">
+                <h5 class="admin-card-title">Събития</h5>
+
+                <div class="admin-stat-row">
+                    <span>Общо</span>
+                    <strong>@Model.TotalEvents</strong>
+                </div>
+                <div class="admin-stat-row">
+                    <span>Предстоящи</span>
+                    <strong>@Model.UpcomingEvents</strong>
+                </div>
+                <div class="admin-stat-row">
+                    <span>Минали</span>
+                    <strong>@Model.PastEvents</strong>
+                </div>
+
+                <div class="admin-card-actions mt-4">
+                    <a asp-controller="Schoolevents" asp-action="Index" class="admin-btn admin-btn-outline">
+                        Преглед
+                    </a>
+                    <a asp-controller="Schoolevents" asp-action="Create" class="admin-btn admin-btn-primary">
+                        Добави
+                    </a>
+                    <a asp-controller="Schoolevents" asp-action="Calendar" class="admin-btn admin-btn-dark">
+                        Календар
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="admin-dashboard-card h-100">
+                <h5 class="admin-card-title">Новини</h5>
+
+                <div class="admin-stat-row">
+                    <span>Общо</span>
+                    <strong>@Model.TotalNews</strong>
+                </div>
+                <div class="admin-stat-row">
+                    <span>Публикувани</span>
+                    <strong>@Model.PublishedNews</strong>
+                </div>
+
+                <div class="admin-card-actions mt-4">
+                    <a asp-controller="News" asp-action="Index" class="admin-btn admin-btn-outline">
+                        Преглед
+                    </a>
+                    <a asp-controller="News" asp-action="Create" class="admin-btn admin-btn-primary">
+                        Добави
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="admin-dashboard-card h-100">
+                <h5 class="admin-card-title">Съобщения</h5>
+
+                <div class="admin-big-number">@Model.TotalMessages</div>
+                <div class="admin-muted-text">Получени съобщения от контактната форма</div>
+
+                <div class="admin-card-actions mt-4">
+                    <a asp-controller="Admin" asp-action="Messages" class="admin-btn admin-btn-outline">
+                        Преглед
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="admin-dashboard-card h-100">
+                <h5 class="admin-card-title">Галерия</h5>
+
+                <div class="admin-stat-row">
+                    <span>Албуми</span>
+                    <strong>@Model.TotalAlbums</strong>
+                </div>
+                <div class="admin-stat-row">
+                    <span>Снимки</span>
+                    <strong>@Model.TotalPhotos</strong>
+                </div>
+
+                <div class="admin-card-actions mt-4">
+                    <a asp-controller="Gallery" asp-action="Index" class="admin-btn admin-btn-outline">
+                        Преглед
+                    </a>
+                    <a asp-controller="Gallery" asp-action="CreateAlbum" class="admin-btn admin-btn-primary">
+                        Нов албум
+                    </a>
+                    <a asp-controller="Gallery" asp-action="Upload" class="admin-btn admin-btn-dark">
+                        Качи снимка
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="admin-dashboard-card h-100">
+                <h5 class="admin-card-title">Бързи действия</h5>
+
+                <div class="admin-card-actions">
+                    <a asp-controller="Schoolevents" asp-action="Index" asp-route-filter="upcoming" class="admin-btn admin-btn-outline">
+                        Предстоящи
+                    </a>
+                    <a asp-controller="Schoolevents" asp-action="Index" asp-route-filter="past" class="admin-btn admin-btn-outline">
+                        Минали
+                    </a>
+                    <a asp-controller="News" asp-action="Index" class="admin-btn admin-btn-outline">
+                        Новини
+                    </a>
+                    <a asp-controller="Home" asp-action="Contact" class="admin-btn admin-btn-outline">
+                        Контакти
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

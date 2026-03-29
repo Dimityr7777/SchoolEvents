@@ -1,0 +1,43 @@
+﻿@model List<SchoolEvents.Models.ContactMessage>
+@{
+    ViewData["Title"] = "Съобщения";
+}
+
+<div class="container py-4">
+    <div class="hero p-4 p-md-5 mb-4">
+        <h1 class="mb-2">Съобщения</h1>
+        <p class="text-muted mb-0">Съобщения от контакт формата.</p>
+    </div>
+
+    <div class="card p-3">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Име</th>
+                        <th>Email</th>
+                        <th>Тема</th>
+                        <th>Съобщение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var m in Model)
+                    {
+                        <tr>
+                            <td class="text-muted">@m.CreatedAt.ToString("dd.MM.yyyy")</td>
+                            <td>@m.Name</td>
+                            <td><a href="mailto:@m.Email">@m.Email</a></td>
+                            <td>@m.Subject</td>
+                            <td style="max-width:520px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                @m.Message
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

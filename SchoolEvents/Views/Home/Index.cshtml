@@ -1,0 +1,296 @@
+﻿@model IEnumerable<SchoolEvents.Models.Schoolevent>
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Начало";    
+}
+
+<!-- ✅ БАНЕР С 8 СНИМКИ -->
+<div id="homeCarousel"
+     class="carousel slide mb-4"
+     data-bs-ride="carousel"
+     data-bs-interval="3000">
+
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="3"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="4"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="5"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="6"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="7"></button>
+    </div>
+
+    <div class="carousel-inner rounded-4 shadow-sm">
+        <div class="carousel-item active">
+            <img src="~/images/ban1.jpg" class="d-block w-100 carousel-img" alt="Ban 1">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/ban2.jpg" class="d-block w-100 carousel-img" alt="Ban 2">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/ban3.jpg" class="d-block w-100 carousel-img" alt="Ban 3">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/ban4.jpg" class="d-block w-100 carousel-img" alt="Ban 4">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/ban5.jpg" class="d-block w-100 carousel-img" alt="Ban 5">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/ban6.jpg" class="d-block w-100 carousel-img" alt="Ban 6">
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/ban7.jpg" class="d-block w-100 carousel-img" alt="Ban 7">
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+<section class="achievements-wrap">
+    <h2 class="fw-bold text-uppercase text-center" style="font-size: 1.6rem;">
+        ПОСТИЖЕНИЯ НА УЧЕНИЦИ, ПРЕДСТАВИЛИ ГИМНАЗИЯТА НА СЪСТЕЗАНИЯ И ОЛИМПИАДИ
+    </h2>
+</section>
+
+<div class="pride-section">
+    <div class="pride-slider">
+        <button type="button" class="pride-arrow pride-arrow-left" id="pridePrev" aria-label="Предишно">
+            &#10094;
+        </button>
+
+        <div class="pride-track">
+            <div class="pride-item"
+                 data-title="ОТКРИТА МОСКОВСКА ОЛИМПИАДА"
+                 data-text="Учениците Цвета Тодорова, Мартин Копчев, Добрин Башев и Пламен Динев завоюваха правото си в конкуренция с над 3000 участници от целия свят да бъдат поканени за финалния кръг на олимпиадата, където мериха сили с над 400 информатици от 7 държави. Златен медал заслужи Мартин Копчев.">
+                <img src="~/images/pride/pride1.jpg" alt="Открита московска олимпиада" />
+            </div>
+
+            <div class="pride-item"
+                 data-title="8-10 март, ПРОЛЕТНО НАЦИОНАЛНО СЪСТЕЗАНИЕ ПО ФИЗИКА"
+                 data-text="Калоян Ботев от XII А клас завоюва III награда на Специална тема и бе удостоен със Свидетелство от Министерството на образованието и науката. Владимир Лалев от XI А клас завоюва I място в четвърта възрастова група и бе удостоен с Грамота за отличие от Министерство на образованието и науката.">
+                <img src="~/images/pride/pride2.jpg" alt="Пролетно национално състезание по физика" />
+            </div>
+
+            <div class="pride-item"
+                 data-title="28 януари, Институт по математика и информатика при БАН"
+                 data-text="Тържествена церемония, на която бяха наградени българските победители в Австралийското математическо състезание (АМС) за 2017 и 2018 година и носителите на Наградата „PETER O’HALLORAN“ за 2017 и 2018 година. Сред осемте ученици от страната бяха Мартин Копчев от 9 клас и Ясен Пенчев от 7 клас - лично наградени от Нейно Превъзходителство Кейт Лоугън, посланик на Австралия за Гърция, България и Румъния.">
+                <img src="~/images/pride/pride3.jpg" alt="Институт по математика и информатика при БАН" />
+            </div>
+
+            <div class="pride-item active"
+                 data-title="Участие на учениците от ПМГ в международно състезание в Румъния"
+                 data-text="Учениците Цвета Тодорова от 11а, Мартин Копчев от 8а, Добрин Башев от 9а, Пламен Динев и Адриян Ибовски от 10а клас участваха и се представиха достойно в Romanian Master of Informatics, RMI 2017, което се проведе от 04-07.10.2017 г. в Букурещ. Най-добре се представи Мартин Копчев, който завоюва бронзов медал.">
+                <img src="~/images/pride/pride4.jpg" alt="Международно състезание в Румъния" />
+            </div>
+
+            <div class="pride-item"
+                 data-title="Ясен Пенчев - Шампион от TIMO 2018!"
+                 data-text="От 20 до 23 февруари в Банкок (Тайланд) се проведе финалният кръг на Тайландската международна математическа олимпиада. Ясен спечели Шампионската купа за VI клас, като постигна най-висок резултат в света за тази възрастова група.">
+                <img src="~/images/pride/pride5.jpg" alt="Ясен Пенчев - Шампион от TIMO 2018" />
+            </div>
+
+            <div class="pride-item"
+                 data-title="Участие на ученици от ПМГ в eJOI"
+                 data-text="Мартин Копчев и Добрин Башев взеха участие в Първата Европейска Младежка Олимпиада по Информатика или еJOI (Europead Junior Olympiad in Informatics), провела се в София на 7-13 септември 2017г. Те се завърнаха от там с медали - златен за Копчев и сребърен за Башев.">
+                <img src="~/images/pride/pride6.jpg" alt="Участие на ученици от ПМГ в eJOI" />
+            </div>
+
+            <div class="pride-item"
+                 data-title="Победи и награди от Олимпиадата на математическото предизвикателство в Сингапур, юли 2017г."
+                 data-text="Рая Шикова и Ясен Пенчев се представиха достойно в третото издание на Олимпиадата на математическото предизвикателство (Singapore International Math Olympiad Challenge (SIMOC) 2017), която се проведе от 14.07.2017 г. до 17.07.2017 г. в Сингапур.">
+                <img src="~/images/pride/pride7.jpg" alt="SIMOC 2017" />
+            </div>
+        </div>
+
+        <button type="button" class="pride-arrow pride-arrow-right" id="prideNext" aria-label="Следващо">
+            &#10095;
+        </button>
+    </div>
+
+    <div class="pride-text-box">
+        <p class="pride-main-text" id="prideText">
+            Учениците Цвета Тодорова от 11а, Мартин Копчев от 8а, Добрин Башев от 9а, Пламен Динев и Адриян Ибовски от 10а клас участваха и се представиха достойно в Romanian Master of Informatics, RMI 2017, което се проведе от 04-07.10.2017 г. в Букурещ. Най-добре се представи Мартин Копчев, който завоюва бронзов медал.
+        </p>
+
+        <div class="pride-caption" id="prideCaption">
+            Участие на учениците от ПМГ в международно състезание в Румъния
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const carouselElement = document.getElementById("homeCarousel");
+            const bannerVideo = document.getElementById("bannerVideo");
+
+            if (carouselElement && bannerVideo) {
+                const homeCarousel = new bootstrap.Carousel(carouselElement, {
+                    interval: false,
+                    ride: false,
+                    pause: false,
+                    wrap: true,
+                    touch: true
+                });
+
+                const bannerItems = Array.from(carouselElement.querySelectorAll(".carousel-item"));
+                let bannerTimer = null;
+                let bannerStarted = false;
+
+                function startBannerImages() {
+                    if (bannerStarted) return;
+                    bannerStarted = true;
+
+                    homeCarousel.to(1);
+
+                    if (bannerTimer) clearInterval(bannerTimer);
+
+                    bannerTimer = setInterval(function () {
+                        const activeItem = carouselElement.querySelector(".carousel-item.active");
+                        let currentIndex = bannerItems.indexOf(activeItem);
+                        let nextIndex = currentIndex + 1;
+
+                        if (nextIndex >= bannerItems.length) {
+                            nextIndex = 1;
+                        }
+
+                        homeCarousel.to(nextIndex);
+                    }, 3000);
+                }
+
+                bannerVideo.addEventListener("ended", function () {
+                    startBannerImages();
+                });
+
+                bannerVideo.addEventListener("loadedmetadata", function () {
+                    const duration = (!isNaN(bannerVideo.duration) && isFinite(bannerVideo.duration) && bannerVideo.duration > 0)
+                        ? bannerVideo.duration * 1000
+                        : 11000;
+
+                    setTimeout(function () {
+                        startBannerImages();
+                    }, duration + 200);
+                });
+
+                const playPromise = bannerVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function () {
+                        startBannerImages();
+                    });
+                }
+            }
+
+            const items = document.querySelectorAll(".pride-item");
+            const text = document.getElementById("prideText");
+            const caption = document.getElementById("prideCaption");
+            const prevBtn = document.getElementById("pridePrev");
+            const nextBtn = document.getElementById("prideNext");
+
+            if (!items.length || !text || !caption || !prevBtn || !nextBtn) return;
+
+            let currentIndex = 3;
+
+            function updateSlider(index) {
+                const mobile = window.innerWidth <= 767;
+                const tablet = window.innerWidth <= 991 && !mobile;
+
+                items.forEach(item => item.classList.remove("active"));
+                items[index].classList.add("active");
+
+                text.textContent = items[index].dataset.text || "";
+                caption.textContent = items[index].dataset.title || "";
+
+                items.forEach((item, i) => {
+                    let offset = i - index;
+
+                    if (offset > 3) offset -= items.length;
+                    if (offset < -3) offset += items.length;
+
+                    const absOffset = Math.abs(offset);
+
+                    let x = 0;
+                    let scale = 0.78;
+                    let opacity = 1;
+                    let zIndex = 1;
+
+                    if (mobile) {
+                        if (offset === 0) x = 0;
+                        else if (offset === -1) x = -72;
+                        else if (offset === 1) x = 72;
+                        else if (offset === -2) x = -126;
+                        else if (offset === 2) x = 126;
+                        else if (offset === -3) x = -176;
+                        else if (offset === 3) x = 176;
+                    } else if (tablet) {
+                        if (offset === 0) x = 0;
+                        else if (offset === -1) x = -138;
+                        else if (offset === 1) x = 138;
+                        else if (offset === -2) x = -238;
+                        else if (offset === 2) x = 238;
+                        else if (offset === -3) x = -330;
+                        else if (offset === 3) x = 330;
+                    } else {
+                        if (offset === 0) x = 0;
+                        else if (offset === -1) x = -210;
+                        else if (offset === 1) x = 210;
+                        else if (offset === -2) x = -360;
+                        else if (offset === 2) x = 360;
+                        else if (offset === -3) x = -500;
+                        else if (offset === 3) x = 500;
+                    }
+
+                    if (offset === 0) {
+                        scale = mobile ? 1.55 : (tablet ? 1.60 : 1.65);
+                        zIndex = 10;
+                    } else if (absOffset === 1) {
+                        scale = mobile ? 0.95 : 1.04;
+                        zIndex = 7;
+                    } else if (absOffset === 2) {
+                        scale = mobile ? 0.84 : 0.92;
+                        zIndex = 5;
+                    } else if (absOffset === 3) {
+                        scale = mobile ? 0.74 : 0.82;
+                        zIndex = 3;
+                    } else {
+                        opacity = 0;
+                    }
+
+                    item.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${scale})`;
+                    item.style.opacity = opacity;
+                    item.style.zIndex = zIndex;
+                });
+            }
+
+            items.forEach((item, index) => {
+                item.addEventListener("click", function () {
+                    currentIndex = index;
+                    updateSlider(currentIndex);
+                });
+            });
+
+            prevBtn.addEventListener("click", function () {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateSlider(currentIndex);
+            });
+
+            nextBtn.addEventListener("click", function () {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateSlider(currentIndex);
+            });
+
+            window.addEventListener("resize", function () {
+                updateSlider(currentIndex);
+            });
+
+            updateSlider(currentIndex);
+        });
+    </script>
+}
